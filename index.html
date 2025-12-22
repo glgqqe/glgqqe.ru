@@ -1,181 +1,854 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <link type="image/png" sizes="48x48" rel="icon" href="favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>глг типа</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="glgqqe - personal website" />
+  <title>glgqqe</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      --bg-color: #121212;
-      --text-color: #eee;
-      --subtext-color: #aaa;
-      --border-color: #333;
-      --link-color: #66ccff;
+    :root {
+      font-family: "JetBrains Mono", monospace;
+      color: white;
+      background-color: #151417;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    header {
-      margin-bottom: 40px;
+      font-family: "JetBrains Mono", monospace;
+      background-color: #151417;
+      color: white;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    /* Strange background elements */
+    .strange-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.5;
     }
 
-    p.subtitle {
-      font-size: 1.1rem;
-      color: var(--subtext-color);
+    /* Crystalline lattice background */
+    .lattice-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -2;
+      opacity: 0.7;
+      background-image: 
+        linear-gradient(rgba(138, 84, 218, 0.6) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(138, 84, 218, 0.6) 2px, transparent 2px),
+        linear-gradient(60deg, rgba(73, 214, 239, 0.5) 2px, transparent 2px),
+        linear-gradient(-60deg, rgba(76, 222, 76, 0.5) 2px, transparent 2px);
+      background-size: 
+        50px 50px,
+        50px 50px,
+        86.6px 86.6px,
+        86.6px 86.6px;
+      background-position: 
+        0 0,
+        0 0,
+        0 0,
+        0 0;
+      animation: latticeMove 20s linear infinite;
     }
 
-    /* 🔥 сетка */
-    .sections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 24px;
-      grid-auto-rows: minmax(100px, auto);
-    }
-
-    section {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
-      background-color: transparent;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-
-    section:hover {
-      transform: translateY(10px);
-      background-color: rgba(255, 255, 255, 0.05);
-      border-color: #555;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    @keyframes latticeMove {
+      0% {
+        background-position: 
+          0 0,
+          0 0,
+          0 0,
+          0 0;
+      }
+      100% {
+        background-position: 
+          50px 50px,
+          -50px -50px,
+          86.6px 86.6px,
+          -86.6px -86.6px;
       }
     }
 
-    .wide { grid-column: span 2; }
-    .tall { grid-row: span 2; }
-    .big  { grid-column: span 2; grid-row: span 2; }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 10px;
+    .lattice-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.5;
+      background-image: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(138, 84, 218, 0.5) 2px,
+          rgba(138, 84, 218, 0.5) 4px
+        ),
+        repeating-linear-gradient(
+          60deg,
+          transparent,
+          transparent 2px,
+          rgba(73, 214, 239, 0.5) 2px,
+          rgba(73, 214, 239, 0.5) 4px
+        ),
+        repeating-linear-gradient(
+          -60deg,
+          transparent,
+          transparent 2px,
+          rgba(76, 222, 76, 0.5) 2px,
+          rgba(76, 222, 76, 0.5) 4px
+        );
+      animation: latticeRotate 30s linear infinite;
     }
 
-    .project {
-      margin-bottom: 20px;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+    @keyframes latticeRotate {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(180deg) scale(1.1);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
     }
 
-    .project h3 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
+    .strange-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(138, 84, 218, 0.5);
+      animation: strangeFloat 20s infinite ease-in-out;
     }
 
-    .project p {
-      color: var(--subtext-color);
+    .strange-circle:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
     }
 
-    .project:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      transform: translateY(-4px);
+    .strange-circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 15%;
+      animation-delay: 5s;
     }
 
-    footer {
+    .strange-circle:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      bottom: 20%;
+      left: 30%;
+      animation-delay: 10s;
+    }
+
+      @keyframes strangeFloat {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.5;
+      }
+      33% {
+        transform: translate(50px, -50px) rotate(120deg);
+        opacity: 0.7;
+      }
+      66% {
+        transform: translate(-30px, 30px) rotate(240deg);
+        opacity: 0.4;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Center Section */
+    .center {
       text-align: center;
-      font-size: 0.9rem;
-      color: var(--subtext-color);
-      margin-top: 60px;
+      padding: 10px;
+      position: relative;
+      flex-shrink: 0;
     }
 
-    a {
-      color: var(--link-color);
+    .nameWrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .centerName {
+      font-size: clamp(40px, 8vw, 90px);
+      margin: auto;
+      animation: textGlitch 1s linear infinite;
+      transition: letter-spacing 0.3s;
+      cursor: default;
+      user-select: none;
+      position: relative;
+      filter: drop-shadow(0 0 15px rgba(138, 84, 218, 0.5));
+    }
+
+    .centerName:hover {
+      letter-spacing: 0.1em;
+      filter: drop-shadow(0 0 30px rgba(138, 84, 218, 0.8));
+    }
+
+    @keyframes textGlitch {
+      2%, 64% {
+        transform: translate(2px, 0) skew(0deg);
+        color: #49d6ef;
+      }
+      4%, 60% {
+        transform: translate(-2px, 0) skew(0deg);
+        color: white;
+      }
+      62% {
+        transform: translate(0, 0) skew(5deg);
+      }
+      64% {
+        color: #4cde4c;
+      }
+      67% {
+        color: white;
+      }
+    }
+
+    .centerName::before,
+    .centerName::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+    }
+
+    .centerName::before {
+      animation: glitchTop 1s linear infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+
+    @keyframes glitchTop {
+      2%, 64% {
+        transform: translate(calc(-50% + 2px), -2px);
+      }
+      4%, 60% {
+        transform: translate(calc(-50% - 2px), 2px);
+      }
+      62% {
+        transform: translate(calc(-50% + 13px), -1px) skew(-13deg);
+      }
+    }
+
+    .centerName::after {
+      animation: glitchBottom 1.5s linear infinite;
+      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+      -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    }
+
+    @keyframes glitchBottom {
+      2%, 64% {
+        transform: translate(calc(-50% - 2px), 0);
+      }
+      8%, 12% {
+        color: white;
+      }
+      10% {
+        color: #c895fa;
+      }
+      4%, 60% {
+        transform: translate(calc(-50% - 2px), 0);
+      }
+      62% {
+        transform: translate(calc(-50% - 22px), 5px) skew(21deg);
+      }
+    }
+
+    /* Strange text elements */
+    .strange-text {
+      font-size: clamp(12px, 1.3vw, 16px);
+      color: #8d85b6;
+      text-shadow: 0 0 8px rgba(96, 52, 183, 0.55);
+      margin-top: 10px;
+      letter-spacing: 1.5px;
+      opacity: 0;
+      animation: strangeAppear 2s ease-in forwards;
+      animation-delay: 1s;
+      transition: letter-spacing 0.3s, filter 0.3s;
+      cursor: default;
+    }
+
+    .strange-text:hover {
+      letter-spacing: 0.2em;
+      filter: drop-shadow(0 0 15px rgba(138, 84, 218, 0.6));
+    }
+
+    @keyframes strangeAppear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .strange-text::before {
+      content: "█";
+      animation: blink 1s infinite;
+      margin-right: 5px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Logos Section */
+    .logos {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      opacity: 0;
+      animation: strangeAppear 2s ease-in forwards;
+      animation-delay: 1.5s;
+    }
+
+    .logo-link {
+      display: inline-block;
       text-decoration: none;
-      transition: color 0.2s;
+      position: relative;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .logo {
+      height: 40px;
+      width: 40px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      padding: 5px;
+      border-width: 2px;
+      border-style: solid;
+      box-shadow: 0 0 8px var(--accent-color);
+      background-color: #1f1f26;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    img {
-      max-width: 100%;
-      border-radius: 8px;
+    .logo svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 18px;
+      border: 2px solid var(--accent-color);
+      opacity: 0;
+      animation: strangePulse 3s infinite;
+    }
+
+    @keyframes strangePulse {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+      }
+    }
+
+    .logo:hover {
+      border-width: 10px;
+      transform: scale(1.1) rotate(5deg);
+      background-color: var(--accent-color);
+    }
+
+    .logo-telegram {
+      --accent-color: #0088cc;
+      color: #0088cc;
+    }
+
+    .logo-discord {
+      --accent-color: #5865F2;
+      color: #5865F2;
+    }
+
+    .logo-steam {
+      --accent-color: #66c0f4;
+      color: #66c0f4;
+    }
+
+    .logo-spotify {
+      --accent-color: #1DB954;
+      color: #1DB954;
+    }
+
+    /* About Section */
+    .about {
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto 0;
+      padding: 15px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    hr {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border: none;
+      border-top: 1px solid;
+      border-image: linear-gradient(20deg, #232e34, #363041) 1;
+      position: relative;
+    }
+
+    hr::before {
+      content: "◄►";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #151417;
+      padding: 0 8px;
+      color: #8d85b6;
+      font-size: 10px;
+      animation: strangeRotate 4s infinite linear;
+    }
+
+    @keyframes strangeRotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .aboutDescription {
+      margin-bottom: 20px;
+      line-height: 22px;
+      overflow-wrap: break-word;
+      font-size: 1em;
+      color: #8d85b6;
+      text-shadow: 0 0 8px rgba(96, 52, 183, 0.55);
+      position: relative;
+    }
+
+    .aboutDescription p {
+      margin: 6px auto;
+      opacity: 0;
+      animation: strangeTextReveal 1s ease-in forwards;
+      transition: letter-spacing 0.3s, filter 0.3s;
+    }
+
+    .aboutDescription p:hover {
+      letter-spacing: 0.1em;
+      filter: drop-shadow(0 0 15px rgba(138, 84, 218, 0.6));
+    }
+
+    .aboutDescription p:nth-child(1) { animation-delay: 0.5s; }
+    .aboutDescription p:nth-child(2) { animation-delay: 1s; }
+    .aboutDescription p:nth-child(3) { animation-delay: 1.5s; }
+
+    .log-container {
+      margin-top: 10px;
+    }
+
+    .log-container .log-text {
+      margin: 4px auto;
+      animation-delay: 2s;
+    }
+
+    .log-container .log-text:nth-child(1) { animation-delay: 2s; }
+    .log-container .log-text:nth-child(2) { animation-delay: 2.2s; }
+    .log-container .log-text:nth-child(3) { animation-delay: 2.4s; }
+    .log-container .log-text:nth-child(4) { animation-delay: 2.6s; }
+    .log-container .log-text:nth-child(5) { animation-delay: 2.8s; }
+
+    @keyframes strangeTextReveal {
+      from {
+        opacity: 0;
+        transform: translateY(20px) rotateX(90deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    .aboutDescription p::before {
+      content: "> ";
+      color: #4cde4c;
+      margin-right: 5px;
+      animation: blink 1s infinite;
+    }
+
+    .log-text {
+      font-family: "JetBrains Mono", monospace;
+      color: #4cde4c;
+      text-shadow: 0 0 8px rgba(76, 222, 76, 0.7);
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      transition: letter-spacing 0.3s, filter 0.3s;
+      cursor: default;
+    }
+
+    .log-text:hover {
+      letter-spacing: 0.15em;
+      filter: drop-shadow(0 0 15px rgba(76, 222, 76, 0.9));
+    }
+
+    .aboutHeader {
+      margin-top: 15px;
       margin-bottom: 12px;
+      font-size: clamp(22px, 4vw, 32px);
+      color: #c0bdcb;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+      transition: letter-spacing 0.3s, filter 0.3s;
+      cursor: default;
+    }
+
+    .aboutHeader:hover {
+      letter-spacing: 0.15em;
+      filter: drop-shadow(0 0 20px rgba(138, 84, 218, 0.7));
+    }
+
+    .aboutHeader::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #49d6ef, #c895fa);
+      animation: strangeLine 2s ease-in-out infinite;
+    }
+
+    @keyframes strangeLine {
+      0%, 100% {
+        width: 0;
+        left: 0;
+      }
+      50% {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+
+    /* Strange floating elements */
+    .strange-float {
+      position: fixed;
+      pointer-events: none;
+      font-size: 16px;
+      color: rgba(138, 84, 218, 0.3);
+      animation: floatStrange 15s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes floatStrange {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.3;
+      }
+      25% {
+        transform: translate(100px, -100px) rotate(90deg);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50px, 50px) rotate(180deg);
+        opacity: 0.2;
+      }
+      75% {
+        transform: translate(50px, 100px) rotate(270deg);
+        opacity: 0.5;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .container {
+        padding: 15px;
+      }
+
+
+      .center {
+        padding: 5px;
+      }
+
+      .about {
+        width: 95%;
+        padding: 10px;
+      }
+    }
+
+    @media (max-height: 700px) {
+      .centerName {
+        font-size: clamp(30px, 6vw, 60px);
+      }
+
+      .logos {
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      .logo {
+        height: 35px;
+        width: 35px;
+      }
+
+      .about {
+        margin-top: 10px;
+      }
+
+      .aboutDescription {
+        margin-bottom: 15px;
+      }
+
+      .aboutDescription p {
+        margin: 4px auto;
+      }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div>
-      <h1>glg / глг</h1>
-      <p class="subtitle">aka glgqqe, glgshka</p>
-    </div>
-  </header>
-
-  <div class="sections-grid">
-    <section>
-      <img src="images/gh.jpg" width="350" height="320">
-      <p align="center">любими ghgh</p>
-    </section>
-    
-    <section>
-      <h2>ссылочке</h2>
-      <p>Telegram: <a href="https://t.me/glgvvv">channel</a></p>
-      <p>Discord: <a href="https://discord.gg/fmx7uFhjaW" target="_blank">server</a></p>
-      <p>Steam: <a href="https://steamcommunity.com/id/glgqqe/" target="_blank">link</a></p>
-      <p>Spotify: <a href="https://open.spotify.com/user/l49kd0b9986ihyz7fhkav7132?si=ba9b36cc8b854499" target="_blank">link</a></p>
-    </section>
-
-    <section>
-      <img src="images/jopa.jpg" width="350" height="320">
-    </section>
-
-    <section>
-      <img src="images/systemd.png" width="350" height="320">
-    </section>
-
-    <section>
-      <img src="images/minecraft.jpg" width="350" height="320">
-    </section>
-
-    <section>
-      <img src="images/castle.jpg" width="350" height="320">
-    </section>
+  <div class="lattice-bg"></div>
+  <div class="lattice-pattern"></div>
+  <div class="strange-bg">
+    <div class="strange-circle"></div>
+    <div class="strange-circle"></div>
+    <div class="strange-circle"></div>
   </div>
-    
+
+  <div class="strange-float" style="top: 20%; left: 5%;">◊</div>
+  <div class="strange-float" style="top: 60%; right: 10%; animation-delay: 3s;">◈</div>
+  <div class="strange-float" style="bottom: 30%; left: 20%; animation-delay: 6s;">◉</div>
+
+  <div class="container">
+    <div class="center">
+      <div class="nameWrapper">
+        <h1 class="centerName" data-text="glgqqe">glgqqe</h1>
+      </div>
+      <p class="strange-text">[ system initialized ]</p>
+      
+      <div class="logos">
+        <a href="https://t.me/glgvvv" target="_blank" class="logo-link">
+          <div class="logo logo-telegram" style="--accent-color: #0088cc;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161l-1.84 8.68c-.135.608-.483.758-.978.473l-2.7-1.99-1.303 1.25c-.15.15-.276.276-.566.276l.2-2.84 5.002-4.52c.22-.196-.048-.305-.34-.11l-6.19 3.9-2.67-.84c-.58-.183-.595-.58.11-.88l10.4-4.01c.48-.18.9.11.74.68z"/>
+            </svg>
+          </div>
+        </a>
+        <a href="https://discord.gg/fmx7uFhjaW" target="_blank" class="logo-link">
+          <div class="logo logo-discord" style="--accent-color: #5865F2;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </div>
+        </a>
+        <a href="https://steamcommunity.com/id/glgqqe/" target="_blank" class="logo-link">
+          <div class="logo logo-steam" style="--accent-color: #66c0f4;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/960px-Steam_icon_logo.svg.png" alt="Steam">
+          </div>
+        </a>
+        <a href="https://open.spotify.com/user/l49kd0b9986ihyz7fhkav7132?si=ba9b36cc8b854499" target="_blank" class="logo-link">
+          <div class="logo logo-spotify" style="--accent-color: #1DB954;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.84-.66 0-.359.24-.66.54-.779 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.242 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="about">
+      <hr>
+      
+      <div class="aboutDescription">
+        <p>you are here</p>
+        <p>but you don't know why</p>
+        <div class="log-container">
+          <p class="log-text" id="logText1">[ initializing... ]</p>
+          <p class="log-text" id="logText2"></p>
+          <p class="log-text" id="logText3"></p>
+          <p class="log-text" id="logText4"></p>
+          <p class="log-text" id="logText5"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Glitch name variation
+    const nameVariations = ["glgqqe", "Glgqqe", "GLGQQE", "glgQQE", "g|gqqe", "glgqq3"];
+    const nameElement = document.querySelector('.centerName');
+    let currentIndex = 0;
+
+    function flickerName() {
+      setTimeout(() => {
+        const randomVariation = nameVariations[Math.floor(Math.random() * nameVariations.length)];
+        nameElement.textContent = randomVariation;
+        nameElement.setAttribute('data-text', randomVariation);
+        flickerName();
+      }, Math.random() * 700 + 100);
+    }
+
+    flickerName();
+
+    // Strange cursor effect
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.98) {
+        const strange = document.createElement('div');
+        strange.className = 'strange-float';
+        strange.textContent = ['◊', '◈', '◉', '○', '●'][Math.floor(Math.random() * 5)];
+        strange.style.left = e.clientX + 'px';
+        strange.style.top = e.clientY + 'px';
+        strange.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        document.body.appendChild(strange);
+        
+        setTimeout(() => {
+          strange.remove();
+        }, 10000);
+      }
+    });
+
+    // Strange text effects
+    const strangeTexts = [
+      "[ system initialized ]",
+      "[ connection established ]",
+      "[ data loaded ]",
+      "[ status: active ]",
+      "[ mode: online ]"
+    ];
+
+    const strangeTextElement = document.querySelector('.strange-text');
+    let textIndex = 0;
+
+    setInterval(() => {
+      textIndex = (textIndex + 1) % strangeTexts.length;
+      strangeTextElement.textContent = strangeTexts[textIndex];
+    }, 5000);
+
+    // Arch Linux boot logs - multiple lines
+    const logMessages = [
+      ":: running early hook [udev]",
+      ":: running hook [udev]",
+      ":: Triggering uevents...",
+      ":: loading module [ext4]",
+      ":: loading module [vfat]",
+      ":: loading module [ntfs]",
+      ":: mounting '/dev/sda2' on real root",
+      ":: running cleanup hook [udev]",
+      ":: running cleanup hook [shutdown]",
+      ":: mounting '/dev/sda1' on '/boot'",
+      ":: mounting '/dev/sda3' on '/home'",
+      ":: running hook [resume]",
+      ":: running hook [filesystems]",
+      ":: running hook [fsck]",
+      ":: running hook [keymap]",
+      ":: running hook [encrypt]",
+      ":: running hook [lvm2]",
+      ":: running hook [systemd]",
+      ":: starting version 255.0",
+      ":: reached target Basic System",
+      ":: reached target Multi-User System",
+      ":: reached target Graphical Interface",
+      ":: Started Network Manager",
+      ":: Started Display Manager",
+      ":: Reached target Network",
+      ":: Reached target Network is Online",
+      "[  OK  ] Started Network Manager",
+      "[  OK  ] Started Display Manager",
+      "[  OK  ] Reached target Multi-User System",
+      "[  OK  ] Reached target Graphical Interface"
+    ];
+
+    const logElements = [
+      document.getElementById('logText1'),
+      document.getElementById('logText2'),
+      document.getElementById('logText3'),
+      document.getElementById('logText4'),
+      document.getElementById('logText5')
+    ];
+
+    // Initialize all log lines (from bottom to top for initial display)
+    logElements.forEach((el, index) => {
+      if (el) {
+        el.textContent = logMessages[Math.floor(Math.random() * logMessages.length)];
+      }
+    });
+
+    function updateLogs() {
+      // Shift all logs down (from bottom to top)
+      for (let i = logElements.length - 1; i > 0; i--) {
+        if (logElements[i] && logElements[i - 1]) {
+          logElements[i].textContent = logElements[i - 1].textContent;
+        }
+      }
+      
+      // Add new log at the top
+      if (logElements[0]) {
+        const randomIndex = Math.floor(Math.random() * logMessages.length);
+        logElements[0].textContent = logMessages[randomIndex];
+      }
+    }
+
+    // Fast log updates
+    setInterval(updateLogs, 400);
+  </script>
 </body>
 </html>
